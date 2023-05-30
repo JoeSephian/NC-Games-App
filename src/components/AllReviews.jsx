@@ -5,10 +5,7 @@ function AllReviews() {
   const [allReviews, setAllReviews] = useState([]);
   useEffect(() => {
     getReviews()
-      .then(({ reviews }) => {
-        return reviews;
-      })
-      .then((reviews) => {
+      .then(({reviews}) => {
         setAllReviews(reviews);
       });
   }, []);
