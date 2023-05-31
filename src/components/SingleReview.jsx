@@ -50,7 +50,6 @@ function SingleReview() {
           <Comments /> 
         </li>
       </ul>
-      
     </main>
   );
 }

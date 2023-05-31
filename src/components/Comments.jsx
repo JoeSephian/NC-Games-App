@@ -22,25 +22,33 @@ function Comments() {
     return <p>Loading...</p>;
   }
 
-  return (
-    <main>
-      <ul className="comments_list">
-        {comments.map(
-          ({ comment_id, body, review_id, author, votes, created_at }) => {
-            const shortenedDate = created_at.substring(0, 10);
-            return (
-              <li className="comments_list_item" key={comment_id}>
-                <p>{body}</p>
-                <p>{author}</p>
-                <p>👍 {votes}</p>
-                <p>{shortenedDate}</p>
-              </li>
-            );
-          }
-        )}
-      </ul>
-    </main>
-  );
+  if (comments === undefined) {
+    return (
+      <main>
+        <h2>No comments</h2>
+      </main>
+    );
+  } else {
+    return (
+      <main>
+        <ul className="comments_list">
+          {comments.map(
+            ({ comment_id, body, review_id, author, votes, created_at }) => {
+              const shortenedDate = created_at.substring(0, 10);
+              return (
+                <li className="comments_list_item" key={comment_id}>
+                  <p>{body}</p>
+                  <p>{author}</p>
+                  <p>👍 {votes}</p>
+                  <p>{shortenedDate}</p>
+                </li>
+              );
+            }
+          )}
+        </ul>
+      </main>
+    );
+  }
 }
 
 export default Comments;
