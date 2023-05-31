@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.review {
+.review_list {
   border: solid;
   margin: 10px;
   width: 25%;
@@ -27,10 +27,16 @@ ul {
   padding: 0;
 }
 
+.single_review {
+  border: solid;
+  padding: 10px;
+  margin: 10px;
+  width: 70%;
+}
+
 @media only screen and (max-width: 800px) {
-  .review {
+  .review_list {
     width: 80%;
     margin: 10px auto;
   }
-  
 }

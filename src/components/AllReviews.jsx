@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import getReviews from "../utils/getReviews.utils";
+import { Link } from "react-router-dom";
 
 function AllReviews() {
   const [allReviews, setAllReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getReviews()
-      .then(({reviews}) => {
-        setAllReviews(reviews);
-      });
+    getReviews().then(({ reviews }) => {
+      setAllReviews(reviews);
+      setIsLoading(false)
+    });
   }, []);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <main>
+      
       <ul className="list">
         {allReviews.map(
           ({
@@ -24,10 +30,10 @@ function AllReviews() {
             designer,
             comment_count,
           }) => {
-            const shortenedDate = created_at.substring(0, 10)
+            const shortenedDate = created_at.substring(0, 10);
             return (
-              <li className="review" key={review_id}>
-                <h2>{title}</h2>
+              <li className="review_list" key={review_id}>
+                <Link to={`/reviews/${review_id}`}><h2>{title}</h2></Link>
                 <h3>Review by {owner}</h3>
                 <p>{category}</p>
                 <img
