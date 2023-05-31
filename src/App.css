@@ -35,7 +35,7 @@ ul {
 }
 
 @media only screen and (max-width: 800px) {
-  .list {
+  .review_list {
     width: 80%;
     margin: 10px auto;
   }
