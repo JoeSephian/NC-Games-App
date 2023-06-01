@@ -9,10 +9,6 @@ function upVote(inc_votes, review_id) {
   .then((response) => {
     return response.data.review.votes
   })
-  .catch((error) => {
-    console.log("Error updating votes:", error)
-    throw error
-  })
 }
 
 export default upVote;
