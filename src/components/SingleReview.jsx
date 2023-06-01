@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import upVote from "../utils/upVote.utils";
 import Comments from "./Comments";
+import AddComment from "./AddComment";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -65,11 +66,12 @@ function SingleReview() {
           <img className="single_review_image" src={review_img_url} alt={title} />
           <p>{review_body}</p>
           <p>{shortenedDate}</p>
-          <button onClick={handleClick}>👍 {reviewVotes}</button>
+          <button className="upvote-button" onClick={handleClick}>👍 {reviewVotes}</button>
           {isError ? (
             <p>Something went wrong! Refresh the page and try again</p>
           ) : null}
           <h3 className="comments_header">Comments</h3>
+          <AddComment />
           <Comments /> 
         </li>
       </ul>

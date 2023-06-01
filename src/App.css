@@ -61,6 +61,25 @@ ul {
   border-top: dotted;
 }
 
+.upvote-button {
+  margin-bottom: 15px;
+  border: solid;
+  border-color: gray;
+}
+
+.nav-link {
+  margin: 0 30px;
+}
+
+.error {
+  background-color: salmon;
+  border: solid;
+}
+
+.new-comment {
+  border-top: dotted;
+}
+
 @media only screen and (max-width: 800px) {
   .review_list {
     width: 80%;
