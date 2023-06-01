@@ -4,9 +4,9 @@ const ncGamesApi = axios.create({
   baseURL: "https://nc-games-m3wy.onrender.com/api/",
 });
 
-function getSingleReview(givenReviewId) {
+function getSingleReview(review_id) {
   return ncGamesApi
-    .get(`reviews/${givenReviewId}`)
+    .get(`reviews/${review_id}`)
     .then((result) => {
       return result.data;
     })
