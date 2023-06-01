@@ -2,6 +2,7 @@ import getSingleReview from "../utils/getSingleReview.utils";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import upVote from "../utils/upVote.utils";
+import Comments from "./Comments";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -56,19 +57,20 @@ function SingleReview() {
 
   return (
     <main>
-      <ul className="list">
+      <ul className="single_list">
         <li className="single_review">
-          <h2>{title}</h2>
-          <h3>Review by {owner}</h3>
+          <h2>'{title}' by {owner} on {shortenedDate}</h2>
           <p>{category}</p>
           <p>Designed by {designer}</p>
-          <img className="review_image" src={review_img_url} alt={title} />
+          <img className="single_review_image" src={review_img_url} alt={title} />
           <p>{review_body}</p>
           <p>{shortenedDate}</p>
           <button onClick={handleClick}>👍 {reviewVotes}</button>
           {isError ? (
             <p>Something went wrong! Refresh the page and try again</p>
           ) : null}
+          <h3 className="comments_header">Comments</h3>
+          <Comments /> 
         </li>
       </ul>
     </main>

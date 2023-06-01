@@ -16,7 +16,17 @@
   max-width: 90%;
 }
 
+.single_review_image {
+  max-width: 40%;
+}
+
 .list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.single_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -30,8 +40,25 @@ ul {
 .single_review {
   border: solid;
   padding: 10px;
-  margin: 10px;
-  width: 70%;
+  width: 90%;
+}
+
+.comments_list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comments_list_item {
+  width: 100%;
+  border-top: dotted;
+}
+
+.comments_header {
+  margin: 0;
+  padding-bottom: 10px;
+  text-decoration: underline;
+  border-top: dotted;
 }
 
 @media only screen and (max-width: 800px) {
