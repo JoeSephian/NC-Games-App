@@ -4,15 +4,13 @@ const ncGamesApi = axios.create({
   baseURL: "https://nc-games-m3wy.onrender.com/api/",
 });
 
-function getReviews(category) {
-  console.log(category.toString())
-  const url = category ? `reviews?${category}` : "reviews";
+function getCategories() {
   return ncGamesApi
-    .get(url)
+    .get("categories")
     .then((result) => {
       return result.data;
     })
     .catch((err) => err);
 }
 
-export default getReviews;
+export default getCategories;
