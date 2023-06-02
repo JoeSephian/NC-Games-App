@@ -80,6 +80,15 @@ ul {
   border-top: dotted;
 }
 
+.comment-entry {
+  width: 80%;
+  margin-bottom: 10px
+}
+
+.comment-button {
+  margin-bottom: 10px;
+}
+
 @media only screen and (max-width: 800px) {
   .review_list {
     width: 80%;

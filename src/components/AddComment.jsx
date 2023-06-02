@@ -38,7 +38,8 @@ function AddComment() {
   return (
     <main>
       <form>
-        <input
+        <textarea
+        className="comment-entry"
           type="text"
           name="comment-text"
           placeholder="add a comment..."
@@ -47,7 +48,8 @@ function AddComment() {
             setInputComment(event.target.value);
           }}
         />
-        <button type="submit" value="Submit" onClick={handleSubmit}>
+        <br />
+        <button className="comment-button" type="submit" value="Submit" onClick={handleSubmit}>
           Submit
         </button>
         {isError ? (
