@@ -7,7 +7,7 @@ import postComment from "../utils/postComment.utils";
 function AddComment() {
   const [inputComment, setInputComment] = useState("");
   const [isError, setIsError] = useState(false);
-  const [newestComment, setNewestComment] = useState(null);
+  const [newestComment, setNewestComment] = useState([]);
   const { user } = useContext(UserContext);
   const { review_id } = useParams();
 
@@ -15,8 +15,8 @@ function AddComment() {
     event.preventDefault();
 
     if (inputComment.trim() === "") {
-        setIsError(true)
-        return
+      setIsError(true);
+      return;
     }
 
     const newComment = {
@@ -27,8 +27,8 @@ function AddComment() {
     postComment(newComment, review_id)
       .then((response) => {
         const comment = response.comment;
-        setNewestComment(comment);
-        setIsError(false)
+        setNewestComment((prevComments) => [comment, ...prevComments ]);
+        setIsError(false);
       })
       .catch((error) => {
         setIsError(true);
@@ -57,14 +57,14 @@ function AddComment() {
           </p>
         ) : null}
       </form>
-      {newestComment && (
-        <div className="new-comment">
-          <p>{newestComment.body}</p>
-          <p>{newestComment.author}</p>
-          <p>👍 {newestComment.votes}</p>
-          <p>{newestComment.created_at.slice(0, 10)}</p>
+      {newestComment.map((comment) => (
+        <div className="new-comment" key={comment.id}>
+          <p>{comment.body}</p>
+          <p>{comment.author}</p>
+          <p>👍 {comment.votes}</p>
+          <p>{comment.created_at.slice(0, 10)}</p>
         </div>
-      )}
+      ))}
     </main>
   );
 }
