@@ -3,20 +3,59 @@ import getReviews from "../utils/getReviews.utils";
 import { Link, useSearchParams } from "react-router-dom";
 
 function AllReviews() {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
   const [allReviews, setAllReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortOption, setSortOption] = useState("sort-date-desc");
   useEffect(() => {
     getReviews(searchParams).then(({ reviews }) => {
-      setAllReviews(reviews);
+      const sortedReviews = [...reviews];
+      if (sortOption === "newest-oldest") {
+        sortedReviews.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+      } else if (sortOption === "oldest-newest") {
+        sortedReviews.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+      } else if (sortOption === "most-comments") {
+        sortedReviews.sort((a, b) => b.comment_count - a.comment_count);
+      } else if (sortOption === "least-comments") {
+        sortedReviews.sort((a, b) => a.comment_count - b.comment_count);
+      } else if (sortOption === "most-votes") {
+        sortedReviews.sort((a, b) => b.votes - a.votes);
+      } else if (sortOption === "least-votes") {
+        sortedReviews.sort((a, b) => a.votes - b.votes);
+      }
+      setAllReviews(sortedReviews);
       setIsLoading(false);
     });
-  }, [searchParams]);
+  }, [searchParams, sortOption]);
+
+  const handleSortChange = (event) => {
+    const currentParams = new URLSearchParams(searchParams);
+    currentParams.set("sort", event.target.value);
+    const currentCategory = currentParams.get("category");
+    if (currentCategory) {
+      currentParams.set("category", currentCategory);
+    }
+    setSearchParams(currentParams.toString());
+    setSortOption(event.target.value);
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
   return (
     <main>
+      <select name="sort-reviews" id="sort-reviews" onChange={handleSortChange}>
+        <option value="newest-oldest">Newest First</option>
+        <option value="oldest-newest">Oldest First</option>
+        <option value="most-comments">Most Comments First</option>
+        <option value="least-comments">Least Comments First</option>
+        <option value="most-votes">Most Votes First</option>
+        <option value="least-votes">Least Votes First</option>
+      </select>
       <ul className="list">
         {allReviews.map(
           ({
