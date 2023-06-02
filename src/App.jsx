@@ -22,7 +22,6 @@ function App() {
           <Route path="/reviews/:review_id" element={<SingleReview />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/categories" element={<Categories />}></Route>
-          <Route path="/reviews?category=:slug"></Route>
         </Routes>
       </>
     </UserContext.Provider>
