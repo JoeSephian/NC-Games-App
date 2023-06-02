@@ -8,6 +8,7 @@ function Nav() {
   return (
     <nav>
       <Link className="nav-link" to="/">Home</Link>
+      <Link className="nav-link" to="/categories">Categories</Link>
       <Link className="nav-link" to="/login">Login</Link>
       <span>Logged in as {user}</span>
     </nav>

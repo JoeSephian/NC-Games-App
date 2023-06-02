@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import getReviews from "../utils/getReviews.utils";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function AllReviews() {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [allReviews, setAllReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getReviews().then(({ reviews }) => {
+    getReviews(searchParams).then(({ reviews }) => {
       setAllReviews(reviews);
-      setIsLoading(false)
+      setIsLoading(false);
     });
-  }, []);
+  }, [searchParams]);
   if (isLoading) {
     return <p>Loading...</p>;
   }
   return (
     <main>
-      
       <ul className="list">
         {allReviews.map(
           ({
@@ -33,9 +33,13 @@ function AllReviews() {
             const shortenedDate = created_at.substring(0, 10);
             return (
               <li className="review_list" key={review_id}>
-                <Link to={`/reviews/${review_id}`}><h2>{title}</h2></Link>
+                <Link to={`/reviews/${review_id}`}>
+                  <h2>{title}</h2>
+                </Link>
                 <h3>Review by {owner}</h3>
-                <p>{category}</p>
+                <Link to={`/reviews?category=${category}`}>
+                  <p>{category}</p>
+                </Link>
                 <img
                   className="review_image"
                   src={review_img_url}
