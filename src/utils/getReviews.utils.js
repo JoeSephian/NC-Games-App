@@ -5,7 +5,6 @@ const ncGamesApi = axios.create({
 });
 
 function getReviews(category) {
-  console.log(category.toString())
   const url = category ? `reviews?${category}` : "reviews";
   return ncGamesApi
     .get(url)
