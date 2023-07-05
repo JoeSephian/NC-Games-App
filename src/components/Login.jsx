@@ -12,19 +12,19 @@ function Login() {
 
   return (
     <main>
-      <form>
-        <label>
-          Username:
+      <form className="loginForm">
           <input
+          className="loginInput"
             type="text"
             name="username"
+            placeholder="Username..."
             value={inputName}
             onChange={(event) => {
               setInputName(event.target.value);
             }}
           />
-        </label>
-        <button type="submit" value="Submit" onClick={handleSubmit}>
+
+        <button className="loginButton" type="submit" value="Submit" onClick={handleSubmit}>
           Log In
         </button>
       </form>

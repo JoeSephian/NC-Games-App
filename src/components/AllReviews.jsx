@@ -79,11 +79,13 @@ function AllReviews() {
                 <Link to={`/reviews?category=${category}`}>
                   <p>{category}</p>
                 </Link>
+                <Link to={`/reviews/${review_id}`}>
                 <img
                   className="review_image"
                   src={review_img_url}
                   alt={title}
                 />
+                </Link>
                 <p>{shortenedDate}</p>
                 <p>👍 {votes}</p>
                 <p>{comment_count} comments</p>

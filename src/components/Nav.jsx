@@ -6,7 +6,7 @@ function Nav() {
   const { user } = useContext(UserContext);
 
   return (
-    <nav>
+    <nav className='navBar'>
       <Link className="nav-link" to="/">Home</Link>
       <Link className="nav-link" to="/categories">Categories</Link>
       <Link className="nav-link" to="/login">Login</Link>
